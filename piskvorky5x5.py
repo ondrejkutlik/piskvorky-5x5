@@ -1,10 +1,3 @@
-"""Piškvorky – 5 v rade na ploche 15 × 15 (tkinter).
-
-Python prepis webovej hry piskvorky5x5.html.
-Proti počítaču alebo dvaja hráči, s možnosťou vrátiť ťah.
-Spustenie:  python piskvorky5x5.py
-"""
-
 import random
 import tkinter as tk
 
@@ -29,10 +22,7 @@ def vnutri(r, c):
     return 0 <= r < N and 0 <= c < N
 
 
-# ---------- logika hry (nezávislá od grafiky) ----------
 def rad(plocha, r, c, z, dr, dc):
-    """Súvislý rad znaku `z` cez políčko (r, c) v smere (dr, dc).
-    Vráti (bunky, počet otvorených koncov)."""
     bunky = [idx(r, c)]
     otvorene = 0
     for smer in (1, -1):
@@ -101,7 +91,6 @@ def tah_pocitaca(plocha, historia):
     return random.choice(kandidati)
 
 
-# ---------- grafika ----------
 class Piskvorky(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -161,7 +150,6 @@ class Piskvorky(tk.Tk):
 
         self.zmen_rezim("pocitac")
 
-    # ---------- pomocné ----------
     def na_tahu(self):
         return "X" if len(self.historia) % 2 == 0 else "O"
 
@@ -182,7 +170,6 @@ class Piskvorky(tk.Tk):
         if i is not None:
             self.tah_hraca(i)
 
-    # ---------- priebeh hry ----------
     def zmen_rezim(self, rezim):
         self.rezim = rezim
         for kluc, t in self.tlacidla_rezimu.items():
